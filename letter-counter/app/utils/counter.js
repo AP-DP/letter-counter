@@ -9,7 +9,7 @@ const ALPHABET = "abcdefghijklmnopqrstuvwxyz"
  */
 function countLetters(textInput) {
     // For testing purposes, assert input is a string
-    let content = toString(textInput);
+    let content = textInput.toString();
     // Find only letters in input (i.e. exclude white space, numbers, special symbols)
     let onlyLetters = content.replace(/[^a-z]/gmi, "");
     // Check for empty string
