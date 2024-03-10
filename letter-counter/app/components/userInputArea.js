@@ -10,6 +10,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 // CSS
 import styles from "../styles/input.module.css";
+// Functionality
+import { countLetters } from '../utils/counter';
 
 function UserInputArea() {
     const [toggleDisabled, setToggleDisabled] = React.useState(false);
@@ -20,7 +22,8 @@ function UserInputArea() {
         // Prevent typing during submission process
         setToggleDisabled(!toggleDisabled);
         // Use data from user
-        console.log(userInput);
+        let count = countLetters(userInput);
+        console.log(count);
     }
 
     const resetInput = () => {
