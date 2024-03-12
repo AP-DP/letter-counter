@@ -2,7 +2,7 @@
 
 // React Elements
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FormGroup } from 'react-bootstrap';
 // Bootstrap Elements
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,26 +10,36 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 // CSS
 import styles from "../styles/input.module.css";
-// Functionality
-import { countLetters } from '../utils/counter';
 
-function UserInputArea() {
+function UserInputArea({exportInput}) {
     const [toggleDisabled, setToggleDisabled] = useState(false);
     const [userInput, setUserInput] = useState("")
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
         // Prevent typing during submission process
-        setToggleDisabled(!toggleDisabled);
+        setToggleDisabled(true);
         // Use data from user
-        let count = countLetters(userInput);
-        console.log(count);
+        exportInput(userInput);
     }
 
     const resetInput = () => {
-        setToggleDisabled(!toggleDisabled);
-        setUserInput("");
+        setToggleDisabled(false);
+        let resetString = "";
+        setUserInput(resetString);
+        exportInput(resetString);
     }
+
+    // Addresses issue where textarea does not process pasted text if identical to previous text
+    useEffect(() => {
+        window.addEventListener("paste", (event) => {
+            try {
+                setUserInput((event.clipboardData).getData("text"));
+            } catch (error) {
+                alert("Please refresh the page and paste again.");
+            }
+        });
+    });
 
     return (
         <Form onSubmit={handleSubmit}>
