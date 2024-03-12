@@ -10,10 +10,10 @@ import Card from 'react-bootstrap/Card';
 // CSS
 import styles from "../styles/grid.module.css";
 
-function GridDisplay() {
+function GridDisplay({data}) {
 
     // Data
-    const [testData, setTestData] = useState({});
+    const [displayData, setDisplayData] = useState(data);
     // Data displayed in Cards
     const [cardCollection, setCardCollection] = useState(null);
     const [cardWidth, setCardWidth] = useState(`fit-content`);
@@ -21,23 +21,16 @@ function GridDisplay() {
     // White space variables
     const [windowWidth, setWindowWidth] = useState(0);
     const [gapWidth, setGapWidth] = useState(0);
-
-    // Collect data to display
+   
+    // Listen for changes in data
     useEffect(() => {
-        const fetchData = async () => {
-            setTestData({
-                a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9, j: 10, 
-                k: 11, l: 12, m: 13, n: 14, o: 15, p: 16, q: 17, r: 18, s: 19, t: 20, 
-                u: 21, v: 22, w: 23, x: 24, y: 25, z: 100
-            });
-        }
-        fetchData();
-    }, []);
+        setDisplayData(data);
+    }, [data]);
 
     // Once data is collected, generate cards
     useEffect(() => {
         populateCards();
-    }, [testData, cardWidth]);
+    }, [displayData, cardWidth]);
 
     // Once cards are generated, adjust width
     useEffect(() => {
@@ -75,10 +68,10 @@ function GridDisplay() {
      * Takes data (Object format) and generates a collection of Card components to dispay each key:value pair
      */
     const populateCards = () => {
-        let labels = Object.keys(testData);
+        let labels = Object.keys(displayData);
         let cards = labels.map((label, _) => {
             let id = `${label}`;
-            let displayedData = `${label}: ${testData[label]}`;
+            let displayedData = `${label}: ${displayData[label]}`;
             return createCard(id, displayedData);
         });
         setCardCollection(cards);
