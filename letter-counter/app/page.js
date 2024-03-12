@@ -1,6 +1,5 @@
 import styles from "./styles/page.module.css";
-import UserInputArea from "./components/userInputArea";
-import GridDisplay from "./components/gridDisplay";
+import InputDisplayWrapper from "./components/inputDisplayWrapper";
 
 export default function Home() {
   return (
@@ -12,8 +11,7 @@ export default function Home() {
       </div>
 
       <div id="counterContainer" className={styles.input}>
-        <UserInputArea />
-        <GridDisplay />
+        <InputDisplayWrapper />
       </div>
     </main>
   );
