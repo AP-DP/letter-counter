@@ -14,7 +14,7 @@ import styles from "../styles/input.module.css";
 import { countLetters } from '../utils/counter';
 
 function UserInputArea() {
-    const [toggleDisabled, setToggleDisabled] = React.useState(false);
+    const [toggleDisabled, setToggleDisabled] = useState(false);
     const [userInput, setUserInput] = useState("")
 
     const handleSubmit = (evt) => {
