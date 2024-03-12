@@ -58,9 +58,10 @@ function GridDisplay({data}) {
      * @param {String} content : data to be displayed
      * @returns Card component
      */
-    const createCard = (key, content) => {
+    const createCard = (key, content, active) => {
+        let baseClassName = "card-body";
         return  <Card className={styles.card} key={key}>
-                    <Card.Body id={`${key}_content`} style={{ padding: 10, width: cardWidth}} >{content}</Card.Body>
+                    <Card.Body className={ active ? `${baseClassName} bg-secondary text-white` : baseClassName} id={`${key}_content`} style={{ padding: 10, width: cardWidth }} >{content}</Card.Body>
                 </Card>
     };
 
@@ -69,10 +70,18 @@ function GridDisplay({data}) {
      */
     const populateCards = () => {
         let labels = Object.keys(displayData);
-        let cards = labels.map((label, _) => {
+        // Place in alphabetical order
+        let labelsInOrder = labels.sort();
+        let cards = labelsInOrder.map((label, _) => {
             let id = `${label}`;
-            let displayedData = `${label}: ${displayData[label]}`;
-            return createCard(id, displayedData);
+            let value = displayData[label];
+            let displayedData = `${label}: ${value}`;
+            // Conditional active status
+            let active = false;
+            if (value > 0) {
+                active = true;
+            }
+            return createCard(id, displayedData, active);
         });
         setCardCollection(cards);
     }
@@ -91,6 +100,7 @@ function GridDisplay({data}) {
                     maxWidth = width;
                 };
             }
+            maxWidth *= 1.5;
             let pixels = `${maxWidth}px`
             setCardWidth(pixels);
             setCardWidthValue(maxWidth);
