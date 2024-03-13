@@ -33,11 +33,14 @@ function UserInputArea({exportInput}) {
     // Addresses issue where textarea does not process pasted text if identical to previous text
     useEffect(() => {
         window.addEventListener("paste", (event) => {
-            try {
-                setUserInput((event.clipboardData).getData("text"));
-            } catch (error) {
-                alert("Please refresh the page and paste again.");
-            }
+            setTimeout(() => {
+                let textAreaContent = (event.target.value);
+                try {
+                    setUserInput(textAreaContent);
+                } catch (error) {
+                    alert("Please refresh the page and paste again.");
+                }
+            }, 2)
         });
     });
 
