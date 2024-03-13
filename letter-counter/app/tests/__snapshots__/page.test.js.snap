@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page renders correctly 1`] = `
+<main
+  className="main"
+>
+  <div
+    className="description"
+  >
+    <p>
+      Get started by typing into the box below.
+    </p>
+  </div>
+  <div
+    className="input"
+    id="counterContainer"
+  >
+    <form
+      className=""
+      onSubmit={[Function]}
+    >
+      <div>
+        <textarea
+          className="form-control"
+          disabled={false}
+          onChange={[Function]}
+          rows={10}
+        />
+        <div
+          className="controls"
+        >
+          <button
+            className="font-monospace btn btn-outline-primary"
+            disabled={false}
+            type="submit"
+          >
+            Submit
+          </button>
+          <button
+            className="font-monospace btn btn-outline-primary"
+            disabled={false}
+            onClick={[Function]}
+            type="reset"
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+    </form>
+    <div
+      className="grid"
+    >
+      <div
+        className="stack hstack"
+        style={
+          {
+            "columnGap": "0px",
+            "display": "grid",
+            "gridTemplateColumns": "repeat(auto-fill, fit-content)",
+          }
+        }
+      />
+    </div>
+  </div>
+</main>
+`;
