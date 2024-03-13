@@ -2,12 +2,12 @@
 const superStrings = require('@supercharge/strings')
 
 let latinAlphabet = 'abcdefghijklmnopqrstuvwxyz';
-let latinAlphabetRange = `a-z`;;
+let latinAlphabetRegex = /[^a-z]/gmi
 let thaiAlphabet = 'กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุู';
-let thaiAlphabetRange = `\u0E00-\u04FF`;
+let thaiAlphabetRegex = /[^\u0E00-\u0E7F]/gmi;
 
 const ALPHABET = latinAlphabet;
-const UNICODERANGE = latinAlphabetRange;
+const REPLACEMENTREGEX = latinAlphabetRegex;
 
 /**
  * Analyze text (newline characters permitted) and count the number of occurrences of each letter of the alphabet.
@@ -18,7 +18,7 @@ function countLetters(textInput) {
     // For testing purposes, assert input is a string
     let content = textInput.toString();
     // Find only letters in input (i.e. exclude white space, numbers, special symbols)
-    let onlyLetters = content.replace(`/[^${UNICODERANGE}]/gmi`, "");
+    let onlyLetters = content.replace(REPLACEMENTREGEX, "");
     // Check for empty string
     let letterArray = [];
     if (onlyLetters !== null) {
